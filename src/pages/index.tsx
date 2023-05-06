@@ -1,6 +1,40 @@
+import { fetcher } from "@/utils/fetcher";
+import { GetStaticProps } from "next";
 import Head from "next/head";
+import useSWR from "swr";
+
+type Country = {
+  name: {
+    common: string;
+    official: string;
+  };
+  population: number;
+  region: string;
+  subregion: string;
+  capital: string[];
+  currencies: {
+    [code: string]: {
+      name: string;
+      symbol: string;
+    };
+  };
+  languages: {
+    [code: string]: string;
+  };
+  flag: string;
+  area: number;
+};
 
 export default function Home() {
+  const {
+    data: countries,
+    error,
+    isLoading,
+  } = useSWR<Country[]>("https://restcountries.com/v3.1/all", fetcher);
+
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
+
   return (
     <>
       <Head>
@@ -9,7 +43,33 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      Hello World
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-8 max-w-[1300px] mx-auto">
+        {countries?.map((country) => (
+          <div key={country.name.common} className="border p-4">
+            {/* <img
+              src={country.flag}
+              alt={country.name.common}
+              className="mb-4"
+            /> */}
+            {country.flag}
+            <h2 className="text-xl font-bold mb-2">{country.name.common}</h2>
+            <p>
+              <strong>Population:</strong> {country.population.toLocaleString()}
+            </p>
+            <p>
+              <strong>Capital:</strong> {country.capital}
+            </p>
+            <p>
+              <strong>Currencies:</strong>{" "}
+              {/* {country.currencies.map((currency) => currency.name).join(", ")} */}
+            </p>
+            <p>
+              <strong>Languages:</strong>{" "}
+              {/* {Object.values(country.languages).join(", ") || null} */}
+            </p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
