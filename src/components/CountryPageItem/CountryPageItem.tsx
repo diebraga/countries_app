@@ -15,8 +15,8 @@ const CountryPageItem: React.FC<CountryPageItemProps> = ({ country }) => {
   });
 
   return (
-    <div className="max-w-[1300px] mx-auto px-8 py-4">
-      <div className="flex items-center justify-center border-2 p-4 rounded-2xl shadow-sm py-6">
+    <div className="max-w-[1300px] mx-auto px-8">
+      <div className="flex items-center justify-center border-2 p-4 rounded-2xl shadow-sm">
         <div className="flex flex-col w-full max-w-[700px]">
           <Link
             href="/"
