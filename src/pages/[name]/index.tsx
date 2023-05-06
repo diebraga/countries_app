@@ -9,13 +9,18 @@ type CountryPageProps = {
   data: Country[];
 };
 
-export const findCountryByName = (name: string, countries: Country[]): Country | undefined => {
-  return countries?.find((country) => country.name.common.toLowerCase() === name.toLowerCase());
+export const findCountryByName = (
+  name: string,
+  countries: Country[]
+): Country | undefined => {
+  return countries?.find(
+    (country) => country.name.common.toLowerCase() === name.toLowerCase()
+  );
 };
 
 const CountryPage: NextPage<CountryPageProps> = ({ name, data }) => {
-  const country = findCountryByName(name, data)
-  
+  const country = findCountryByName(name, data);
+
   if (!country) {
     return <div>Error: Country data not available</div>;
   }
@@ -35,8 +40,8 @@ const CountryPage: NextPage<CountryPageProps> = ({ name, data }) => {
           Go Back
         </Link>
 
-        <div className="-mb-14">
-          <div dangerouslySetInnerHTML={{ __html: svgImage }} />
+        <div className="md:-mb-14">
+          <div className="" dangerouslySetInnerHTML={{ __html: svgImage }} />
         </div>
         <div className="text-base md:text-lg lg:mt-7">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -61,6 +66,27 @@ const CountryPage: NextPage<CountryPageProps> = ({ name, data }) => {
             <strong>Languages:</strong>{" "}
             {Object.values(country.languages).join(", ")}
           </p>
+          {country.bordersWithFlag && country.bordersWithFlag.length > 0 && (
+            <div className="mt-4">
+              <strong>Borders:</strong>
+              <div className="flex justify-around w-full">
+                {country.bordersWithFlag.map((border) => (
+                  <div key={border.name}>
+                    <p>{border.code}</p>
+                    <div
+                      className="h-10 w-10"
+                      dangerouslySetInnerHTML={{
+                        __html: twemoji.parse(border.flag, {
+                          folder: "svg",
+                          ext: ".svg",
+                        }),
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

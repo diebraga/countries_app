@@ -1,14 +1,15 @@
 export type BorderWithFlag = {
-  name: string
-  flag: string
-}
+  name: string;
+  flag: string;
+  code: string;
+};
 
 export type Country = {
   name: {
     common: string;
     official: string;
   };
-  bordersWithFlag: BorderWithFlag[]
+  bordersWithFlag: BorderWithFlag[];
   population: number;
   cca3: string;
   region: string;
