@@ -11,7 +11,7 @@ const CountryCard: React.FC<{ country: Country }> = ({ country }) => {
 
   return (
     <Link href={`/${country.name.common}`}>
-      <div className="border-2 p-4 rounded-xl shadow-md cursor-pointer transition duration-300 hover:border-blue-500 hover:shadow-lg">
+      <div className="border-2 p-4 rounded-2xl shadow-md cursor-pointer transition duration-300 hover:border-blue-500 hover:shadow-lg">
         <div dangerouslySetInnerHTML={{ __html: svgImage }} />
         <h2 className="text-2xl font-bold mb-2">{country.name.common}</h2>
       </div>

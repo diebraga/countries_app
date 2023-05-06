@@ -1,5 +1,4 @@
 import { fetcher } from "@/utils/fetcher";
-import twemoji from "twemoji";
 import Head from "next/head";
 import useSWR from "swr";
 import { CountryGrid } from "@/components/CountryGrid/CountryGrid";
@@ -35,7 +34,7 @@ export default function Home() {
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-
+  console.log(countries[0]);
   return (
     <>
       <Head>
