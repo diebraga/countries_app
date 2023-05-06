@@ -1,3 +1,4 @@
+import { getCursorStyle } from "@/utils/getCursorStyle/getCursorStyle";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -18,9 +19,10 @@ const SearchBox: React.FC<SearchBoxProps> = ({
       <input
         type="text"
         placeholder="Search..."
+        data-testid="search"
         value={searchInput}
         disabled={isNamePage}
-        style={isNamePage ? { cursor: "not-allowed" } : {}}
+        style={getCursorStyle(isNamePage)}
         onChange={(e) => setSearchInput(e.target.value)}
         className="px-4 py-2 w-64 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />

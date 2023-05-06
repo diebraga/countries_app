@@ -17,7 +17,7 @@ const BordersCountryPageItem: React.FC<BordersCountryPageItemProps> = ({
           <strong>Borders:</strong>
           <div className="flex flex-wrap justify-center space-x-4">
             {country.bordersWithFlag.map((border) => (
-              <div key={border.name}>
+              <div key={border.code}>
                 <p>{border.code}</p>
                 <Link
                   href={`${border.name}`}
