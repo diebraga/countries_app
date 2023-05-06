@@ -1,22 +1,10 @@
 import "../../styles/global.css";
 import type { AppProps } from "next/app";
 import useSWR from "swr";
-import { fetcher } from "@/utils/fetcher";
+import { fetcher } from "@/utils/fetcher/fetcher";
 import { Country } from "@/@types";
 import Header from "@/components/Header/Header";
-
-export const findCountriesByBorderCodes = (
-  borderCodes: string[],
-  countries: Country[]
-): { name: string; flag: string }[] => {
-  return countries
-    .filter((country) => borderCodes?.includes(country.cca3))
-    .map((country) => ({
-      name: country.name.common,
-      flag: country.flag,
-      code: country.cca3,
-    }));
-};
+import { findCountriesByBorderCodes } from "@/utils/findCountriesByBorderCodes/findCountriesByBorderCodes";
 
 export default function App({ Component, pageProps }: AppProps) {
   const countries = useSWR<Country[]>(
