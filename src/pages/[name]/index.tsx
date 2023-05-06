@@ -1,14 +1,25 @@
 import React from "react";
 import twemoji from "twemoji";
-import { Country } from "..";
 import { NextPage } from "next";
 import Link from "next/link";
+import { Country } from "@/@types";
 
 type CountryPageProps = {
-  country: Country;
+  name: string;
+  data: Country[];
 };
 
-const CountryPage: NextPage<CountryPageProps> = ({ country }) => {
+export const findCountryByName = (name: string, countries: Country[]): Country | undefined => {
+  return countries?.find((country) => country.name.common.toLowerCase() === name.toLowerCase());
+};
+
+const CountryPage: NextPage<CountryPageProps> = ({ name, data }) => {
+  const country = findCountryByName(name, data)
+  
+  if (!country) {
+    return <div>Error: Country data not available</div>;
+  }
+
   const svgImage = twemoji.parse(country.flag, {
     folder: "svg",
     ext: ".svg",
@@ -61,27 +72,13 @@ export const getServerSideProps = async ({
 }: {
   params: { name: string };
 }) => {
-  try {
-    const { name } = params;
+  const { name } = params;
 
-    const res = await fetch(
-      `https://restcountries.com/v3.1/name/${name.toLowerCase()}`
-    );
-    const [country] = await res.json();
-
-    return {
-      props: {
-        country,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        country: null,
-      },
-    };
-  }
+  return {
+    props: {
+      name,
+    },
+  };
 };
 
 export default CountryPage;

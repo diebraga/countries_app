@@ -1,40 +1,12 @@
-import { fetcher } from "@/utils/fetcher";
 import Head from "next/head";
-import useSWR from "swr";
 import { CountryGrid } from "@/components/CountryGrid/CountryGrid";
+import { Country } from "@/@types";
 
-export type Country = {
-  name: {
-    common: string;
-    official: string;
-  };
-  population: number;
-  region: string;
-  subregion: string;
-  capital: string[];
-  currencies: {
-    [code: string]: {
-      name: string;
-      symbol: string;
-    };
-  };
-  languages: {
-    [code: string]: string;
-  };
-  flag: string;
-  area: number;
+type HomePros = {
+  data: Country[];
 };
 
-export default function Home() {
-  const {
-    data: countries,
-    error,
-    isLoading,
-  } = useSWR<Country[]>("https://restcountries.com/v3.1/all", fetcher);
-
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
-  console.log(countries[0]);
+export default function Home({ data }: HomePros) {
   return (
     <>
       <Head>
@@ -43,7 +15,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <CountryGrid countries={countries} />
+      <CountryGrid countries={data} />
     </>
   );
 }

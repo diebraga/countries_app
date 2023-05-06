@@ -1,7 +1,7 @@
-import { Country } from "@/pages";
 import React from "react";
 import twemoji from "twemoji";
 import Link from "next/link";
+import { Country } from "@/@types";
 
 const CountryCard: React.FC<{ country: Country }> = ({ country }) => {
   const svgImage = twemoji.parse(country.flag, {
