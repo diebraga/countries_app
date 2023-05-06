@@ -1,11 +1,21 @@
 import React from "react";
 
-const SearchBox: React.FC = () => {
+type SearchBoxProps = {
+  searchInput: string;
+  setSearchInput: (value: string) => void;
+};
+
+const SearchBox: React.FC<SearchBoxProps> = ({
+  searchInput,
+  setSearchInput,
+}) => {
   return (
     <div className="relative">
       <input
         type="text"
         placeholder="Search..."
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
         className="px-4 py-2 w-64 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <svg

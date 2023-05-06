@@ -2,7 +2,12 @@ import Link from "next/link";
 import React from "react";
 import { SearchBox } from "../SearchBox/SearchBox";
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  searchInput: string;
+  setSearchInput: (value: string) => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ searchInput, setSearchInput }) => {
   return (
     <nav>
       <div className="max-w-[1300px] mx-auto px-8 py-4 header">
@@ -13,7 +18,10 @@ const Header: React.FC = () => {
           >
             COUNTRIES APP
           </Link>
-          <SearchBox />
+          <SearchBox
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+          />
         </div>
       </div>
     </nav>

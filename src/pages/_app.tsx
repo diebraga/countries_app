@@ -4,10 +4,10 @@ import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher/fetcher";
 import { Country } from "@/@types";
 import Header from "@/components/Header/Header";
-import { findCountriesByBorderCodes } from "@/utils/findCountriesByBorderCodes/findCountriesByBorderCodes";
 import { FailedToLoad } from "@/components/FailedToLoad/FailedToLoad";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 import { getCountriesWithBorders } from "@/utils/getCountriesWithBorders/getCountriesWithBorders";
+import { useSearch } from "@/hooks/useSearch/useSearch";
 
 export default function App({ Component, pageProps }: AppProps) {
   const countries = useSWR<Country[]>(
@@ -15,19 +15,21 @@ export default function App({ Component, pageProps }: AppProps) {
     fetcher
   );
 
+  const countriesWithBorders = getCountriesWithBorders(countries.data);
+  const { searchInput, setSearchInput, filteredCountries } =
+    useSearch(countriesWithBorders);
+
   if (countries.error) return <FailedToLoad />;
   if (countries.isLoading) return <LoadingSpinner />;
 
-  const countriesWithBorders = getCountriesWithBorders(countries.data)
-
   const props = {
-    data: countriesWithBorders,
+    data: filteredCountries,
     ...pageProps,
   };
 
   return (
     <>
-      <Header />
+      <Header searchInput={searchInput} setSearchInput={setSearchInput}/>
       <Component {...props} />
     </>
   );
