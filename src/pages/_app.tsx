@@ -8,6 +8,7 @@ import { FailedToLoad } from "@/components/FailedToLoad/FailedToLoad";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 import { getCountriesWithBorders } from "@/utils/getCountriesWithBorders/getCountriesWithBorders";
 import { useSearch } from "@/hooks/useSearch/useSearch";
+import { CountryNotFound } from "@/components/CountryNotFound/CountryNotFound";
 
 export default function App({ Component, pageProps }: AppProps) {
   const countries = useSWR<Country[]>(
@@ -29,8 +30,12 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Header searchInput={searchInput} setSearchInput={setSearchInput}/>
-      <Component {...props} />
+      <Header searchInput={searchInput} setSearchInput={setSearchInput} />
+      {!filteredCountries?.length ? (
+        <CountryNotFound />
+      ) : (
+        <Component {...props} />
+      )}
     </>
   );
 }

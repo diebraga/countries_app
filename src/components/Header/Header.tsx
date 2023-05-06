@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 import { SearchBox } from "../SearchBox/SearchBox";
 
 type HeaderProps = {
@@ -8,6 +9,12 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ searchInput, setSearchInput }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    setSearchInput("");
+  }, [router.pathname, setSearchInput]);
+
   return (
     <nav>
       <div className="max-w-[1300px] mx-auto px-8 py-4 header">

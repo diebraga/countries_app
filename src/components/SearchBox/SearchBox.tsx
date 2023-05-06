@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 type SearchBoxProps = {
@@ -9,12 +10,17 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   searchInput,
   setSearchInput,
 }) => {
+  const router = useRouter();
+  const isNamePage = router.pathname.includes("[name]");
+
   return (
     <div className="relative">
       <input
         type="text"
         placeholder="Search..."
         value={searchInput}
+        disabled={isNamePage}
+        style={isNamePage ? { cursor: "not-allowed" } : {}}
         onChange={(e) => setSearchInput(e.target.value)}
         className="px-4 py-2 w-64 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
