@@ -12,7 +12,7 @@ const BordersCountryPageItem: React.FC<BordersCountryPageItemProps> = ({
   return (
     <>
       {country.bordersWithFlag && country.bordersWithFlag.length > 0 && (
-        <div className="mt-4 mb-20">
+        <div className="mt-4 mb-10">
           <strong>Borders:</strong>
           <div className="flex flex-wrap justify-center space-x-4">
             {country.bordersWithFlag.map((border) => (
