@@ -20,7 +20,7 @@ const CountryPageItem: React.FC<CountryPageItemProps> = ({ country }) => {
         <div className="flex flex-col w-full max-w-[700px]">
           <Link
             href="/"
-            className="my-4 text-blue-500 underline cursor-pointer -mb-10 text-lg"
+            className="my-4 text-blue-500 underline cursor-pointer text-lg"
           >
             Go Back
           </Link>

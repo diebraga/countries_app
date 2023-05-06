@@ -7,6 +7,7 @@ import Header from "@/components/Header/Header";
 import { findCountriesByBorderCodes } from "@/utils/findCountriesByBorderCodes/findCountriesByBorderCodes";
 import { FailedToLoad } from "@/components/FailedToLoad/FailedToLoad";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
+import { getCountriesWithBorders } from "@/utils/getCountriesWithBorders/getCountriesWithBorders";
 
 export default function App({ Component, pageProps }: AppProps) {
   const countries = useSWR<Country[]>(
@@ -17,16 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
   if (countries.error) return <FailedToLoad />;
   if (countries.isLoading) return <LoadingSpinner />;
 
-  const countriesWithBorders = countries.data?.map((country) => {
-    const countryWithBorders = {
-      ...country,
-      bordersWithFlag: findCountriesByBorderCodes(
-        country.borders,
-        countries.data as Country[]
-      ),
-    };
-    return countryWithBorders;
-  });
+  const countriesWithBorders = getCountriesWithBorders(countries.data)
 
   const props = {
     data: countriesWithBorders,

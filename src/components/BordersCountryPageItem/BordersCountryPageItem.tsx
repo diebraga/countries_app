@@ -1,4 +1,5 @@
 import { Country } from "@/@types";
+import Link from "next/link";
 import React from "react";
 import twemoji from "twemoji";
 
@@ -18,7 +19,8 @@ const BordersCountryPageItem: React.FC<BordersCountryPageItemProps> = ({
             {country.bordersWithFlag.map((border) => (
               <div key={border.name}>
                 <p>{border.code}</p>
-                <div
+                <Link
+                  href={`${border.name}`}
                   className="h-10 w-10"
                   dangerouslySetInnerHTML={{
                     __html: twemoji.parse(border.flag, {
