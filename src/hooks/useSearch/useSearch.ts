@@ -1,21 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Country } from "@/@types";
 
-export const useSearch = (
-  countries: Country[] | undefined
-): { searchInput: string; setSearchInput: (value: string) => void; filteredCountries: Country[] | undefined } => {
+export const useSearch = (countries: Country[] | undefined) => {
   const [searchInput, setSearchInput] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState<Country[] | undefined>(undefined);
 
-  useEffect(() => {
-    if (countries) {
-      setFilteredCountries(
-        countries.filter((country) =>
-          country.name.common.toLowerCase().includes(searchInput.toLowerCase())
-        )
-      );
-    }
-  }, [countries, searchInput]);
+  const filteredCountries = useMemo(() => {
+    return countries?.filter((country) =>
+      country.name.common.toLowerCase().includes(searchInput.toLowerCase())
+    );
+  }, [searchInput, countries]);
 
-  return { searchInput, setSearchInput, filteredCountries };
+  return {
+    searchInput,
+    setSearchInput,
+    filteredCountries,
+  };
 };
