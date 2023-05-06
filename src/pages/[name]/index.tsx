@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { Country } from "@/@types";
 import { CountryPageItem } from "@/components/CountryPageItem/CountryPageItem";
 import { findCountryByName } from "@/utils/findCountryByName/findCountryByName";
+import { FailedToLoad } from "@/components/FailedToLoad/FailedToLoad";
 
 type CountryPageProps = {
   name: string;
@@ -13,7 +14,7 @@ const CountryPage: NextPage<CountryPageProps> = ({ name, data }) => {
   const country = findCountryByName(name, data);
 
   if (!country) {
-    return <div>Error: Country data not available</div>;
+    return <FailedToLoad />;
   }
 
   return <CountryPageItem country={country} />;

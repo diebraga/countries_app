@@ -5,6 +5,8 @@ import { fetcher } from "@/utils/fetcher/fetcher";
 import { Country } from "@/@types";
 import Header from "@/components/Header/Header";
 import { findCountriesByBorderCodes } from "@/utils/findCountriesByBorderCodes/findCountriesByBorderCodes";
+import { FailedToLoad } from "@/components/FailedToLoad/FailedToLoad";
+import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 
 export default function App({ Component, pageProps }: AppProps) {
   const countries = useSWR<Country[]>(
@@ -12,8 +14,8 @@ export default function App({ Component, pageProps }: AppProps) {
     fetcher
   );
 
-  if (countries.error) return <div>failed to load</div>;
-  if (countries.isLoading) return <div>loading...</div>;
+  if (countries.error) return <FailedToLoad />;
+  if (countries.isLoading) return <LoadingSpinner />;
 
   const countriesWithBorders = countries.data?.map((country) => {
     const countryWithBorders = {
