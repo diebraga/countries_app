@@ -18,15 +18,15 @@ describe("BordersCountryPageItem", () => {
     name: { common: "United States" },
     flag: "us-flag",
     bordersWithFlag: [
-      { cca3: "CAN", name: { common: "Canada" }, flag: "ca-flag", code: "CAN" },
-      { cca3: "MEX", name: { common: "Mexico" }, flag: "mx-flag", code: "MEX" },
+      { cca3: "CAN", name: "Canada", flag: "ca-flag", code: "CAN" },
+      { cca3: "MEX", name: "Mexico", flag: "mx-flag", code: "MEX" },
     ],
   } as any;
 
   it("should render the component with border countries", () => {
     render(<BordersCountryPageItem country={country} />);
 
-    expect(screen.getByText("CAN")).toBeDefined();
+    expect(screen.getByText("Canada")).toBeDefined();
   });
 
   it("should not render the component without border countries", () => {
