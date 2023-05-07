@@ -20,7 +20,7 @@ export default function Home({ data }: HomePros) {
           property="og:description"
           content="Countries app that lists all world countries"
         />
-        <meta property="og:url" content={``} />
+        <meta property="og:url" content={`https://countries-app-sepia-zeta.vercel.app`} />
         <meta property="og:image" content="https://github.com/diebraga.png" />
         <meta property="og:image:alt" content="countries app image" />
         <meta name="github:owner" content="diebraga" />
