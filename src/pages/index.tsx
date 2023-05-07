@@ -1,11 +1,9 @@
 import Head from "next/head";
 import { CountryGrid } from "@/components/CountryGrid/CountryGrid";
 import { Country } from "@/@types";
-import { SetStateAction } from "react";
 
 type HomePros = {
   data: Country[];
-  resetSearch: () => void;
 };
 
 export default function Home({ data }: HomePros) {
