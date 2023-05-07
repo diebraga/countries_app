@@ -15,13 +15,15 @@ const BordersCountryPageItem: React.FC<BordersCountryPageItemProps> = ({
       {country.bordersWithFlag && country.bordersWithFlag.length > 0 && (
         <div className="mt-4 mb-10">
           <strong>Borders:</strong>
-          <div className="flex flex-wrap justify-center space-x-4">
+          <div className="flex flex-wrap justify-around space-x-4 mt-5">
             {country.bordersWithFlag.map((border) => (
               <div key={border.code}>
-                <p>{border.code}</p>
+                <h3 className="font-bold">{border.name}</h3>
+                <p>
+                  Population: {border.population}
+                </p>
                 <Link
                   href={`${border.name}`}
-                  className="h-10 w-10"
                   dangerouslySetInnerHTML={{
                     __html: twemoji.parse(border.flag, {
                       folder: "svg",

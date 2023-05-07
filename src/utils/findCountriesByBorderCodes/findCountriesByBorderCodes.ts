@@ -10,5 +10,6 @@ export const findCountriesByBorderCodes = (
       name: country.name.common,
       flag: country.flag,
       code: country.cca3,
+      population: country.population,
     }));
 };

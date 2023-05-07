@@ -2,6 +2,7 @@ export type BorderWithFlag = {
   name: string;
   flag: string;
   code: string;
+  population: number;
 };
 
 export type Country = {
