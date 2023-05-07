@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { CountryGrid } from "./CountryGrid";
+import { expect } from '@jest/globals';
 
 describe("CountryGrid", () => {
   const countries = [

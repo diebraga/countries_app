@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { CountryPageItem } from "./CountryPageItem";
 import { Country } from "@/@types";
+import { expect } from '@jest/globals';
 
 jest.mock("next/link", () => {
   return ({ children }: { children: any }) => children;

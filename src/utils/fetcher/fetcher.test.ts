@@ -1,4 +1,5 @@
 import { fetcher } from "./fetcher";
+import { expect } from '@jest/globals';
 
 describe("fetcher", () => {
   const apiUrl = "https://mock.com/api/data";

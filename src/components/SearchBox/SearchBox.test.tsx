@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useRouter } from "next/router";
 import { SearchBox } from "./SearchBox";
+import { expect } from '@jest/globals';
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),

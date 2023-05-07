@@ -1,5 +1,6 @@
 import { findCountriesByBorderCodes } from "../findCountriesByBorderCodes/findCountriesByBorderCodes";
 import { getCountriesWithBorders } from "./getCountriesWithBorders";
+import { expect } from '@jest/globals';
 
 jest.mock("../findCountriesByBorderCodes/findCountriesByBorderCodes", () => ({
   findCountriesByBorderCodes: jest.fn((borderCodes, countries) => {

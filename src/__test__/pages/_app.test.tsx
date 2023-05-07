@@ -1,4 +1,4 @@
-import Header from "@/components/Header/Header";
+import { expect } from '@jest/globals';
 import { useSearch } from "../../hooks/useSearch/useSearch";
 import { getCountriesWithBorders } from "../../utils/getCountriesWithBorders/getCountriesWithBorders";
 import { render, screen } from "@testing-library/react";

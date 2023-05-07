@@ -1,6 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { Country } from "@/@types";
 import { useSearch } from "./useSearch";
+import { expect } from '@jest/globals';
 
 describe("useSearch", () => {
   const countries: Country[] = [

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { findCountryByName } from "@/utils/findCountryByName/findCountryByName";
 import CountryPage, { getServerSideProps } from "@/pages/[name]";
+import { expect } from '@jest/globals';
 
 jest.mock("../../utils/findCountryByName/findCountryByName");
 jest.mock("../../components/CountryPageItem/CountryPageItem", () => ({

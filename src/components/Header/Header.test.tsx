@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { useRouter } from "next/router";
 import Header from "./Header";
+import { expect } from '@jest/globals';
 
 jest.mock("next/link", () => {
   return ({ children }: { children: React.ReactNode }) => children;

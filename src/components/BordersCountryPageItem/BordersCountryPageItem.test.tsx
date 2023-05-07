@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { BordersCountryPageItem } from "./BordersCountryPageItem";
+import { expect } from '@jest/globals';
 
 jest.mock(
   "next/link",

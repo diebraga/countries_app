@@ -1,4 +1,5 @@
 import { findCountryByName } from "./findCountryByName";
+import { expect } from '@jest/globals';
 
 describe("findCountryByName", () => {
   const countries = [

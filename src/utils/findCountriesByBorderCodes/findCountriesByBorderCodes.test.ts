@@ -1,4 +1,5 @@
 import { findCountriesByBorderCodes } from "./findCountriesByBorderCodes";
+import { expect } from '@jest/globals';
 
 describe("findCountriesByBorderCodes", () => {
   const countries = [

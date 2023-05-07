@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Country } from '@/@types';
 import { CountryCard } from './CountryCard';
+import { expect } from '@jest/globals';
 
 describe('CountryCard', () => {
   const country: Country = {

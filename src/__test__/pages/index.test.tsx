@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Home from "@/pages";
+import { expect } from '@jest/globals';
 
 jest.mock("../../components/CountryGrid/CountryGrid", () => ({
   CountryGrid: jest.fn(() => <div>Mocked CountryGrid</div>),
